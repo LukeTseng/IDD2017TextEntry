@@ -14,6 +14,7 @@ import com.google.android.things.pio.SpiDevice;
 import com.google.android.things.pio.UartDevice;
 
 import java.io.IOException;
+import android.graphics.Typeface;
 
 /**
  * Created by bjoern on 8/14/17.
@@ -139,6 +140,21 @@ public abstract class SimplePicoPro extends SimpleBoard {
             editText.getText().append(c);
         } else {
             Log.e(TAG,"printChar: Could not find R.id.editText");
+        }
+    }
+
+    void deleteCharacterOnScreen() {
+        if (activity == null) {
+            Log.e(TAG,"DeleteChar: activity is null");
+            return;
+        }
+
+        EditText editText;
+        editText = (EditText) activity.findViewById(R.id.editText);
+
+        int length = editText.getText().length();
+        if (length > 0) {
+            editText.getText().delete(length - 1, length);
         }
     }
 
